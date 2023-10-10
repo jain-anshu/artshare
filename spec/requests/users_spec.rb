@@ -41,8 +41,15 @@ RSpec.describe "Users", type: :request do
         expect(user['username']).to eq('new_testuser2')
         expect(response).to have_http_status(:ok)
       end
+    end
 
-
+    describe "DELETE /destroy" do
+      it "deletes the user specified by params[:id]" do
+        deleted_username = User.second.username
+        delete "/users/#{User.second.id}"
+        response_json = JSON.parse(response.body)
+        expect(response_json['username']).to eq(deleted_username)
+      end
     end
   end
 end
