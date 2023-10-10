@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :users, only: [:index, :show, :update, :destroy, :create]
   resources :artworks, only: [:index, :show, :update, :destroy, :create]
+  resources :artwork_shares, only: [:create, :destroy]
 end
